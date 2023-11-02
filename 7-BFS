@@ -1,0 +1,22 @@
+from collections import deque
+
+def bfs(graph, start):
+    visited = set()
+    queue = deque([start])
+    
+    while queue:
+        node = queue.popleft()
+        if node not in visited:
+            print(node, end=' ')
+            visited.add(node)
+            queue.extend(neighbor for neighbor in graph[node] if neighbor not in visited)
+
+graph = {
+        0: [1, 2],
+        1: [2],
+        2: [0, 3],
+        3: [3]
+    }
+
+print("Breadth-First Traversal (starting from node 2):")
+bfs(graph,2)
